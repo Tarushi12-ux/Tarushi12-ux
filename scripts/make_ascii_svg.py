@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Converts assets/source-prepped.png into a monochrome animated ASCII SVG portrait.
-If no prepped image is found, generates a clean terminal placeholder SVG displaying "ADD YOUR PHOTO".
+If no prepped image is found, generates a modern terminal photo-module placeholder SVG ("PHOTO_MODULE: awaiting input").
 Output: ascii-profile.svg
 """
 
@@ -19,9 +19,8 @@ def generate_ascii_from_image(image_path, svg_output_path):
 
     img = Image.open(image_path).convert("L")
     
-    # Target grid resolution (~65 cols x ~45 rows for 370x370 SVG)
-    target_cols = 64
-    aspect_ratio = 0.55 # Font aspect ratio (height is ~1.8x width)
+    target_cols = 60
+    aspect_ratio = 0.55
     width, height = img.size
     target_rows = int((height / width) * target_cols * aspect_ratio)
 
@@ -36,7 +35,6 @@ def generate_ascii_from_image(image_path, svg_output_path):
             val = pixels[x, y]
             char_idx = int((val / 255.0) * (ramp_len - 1))
             char = RAMP[char_idx]
-            # Replace spaces with non-breaking space for XML preserving whitespace
             line_chars.append("&#160;" if char == " " else char)
         lines.append("".join(line_chars))
 
@@ -44,25 +42,24 @@ def generate_ascii_from_image(image_path, svg_output_path):
     return True
 
 def generate_placeholder_svg(svg_output_path):
-    # ASCII box art placeholder
-    placeholder_ascii = [
-        "+-----------------------------------------+",
-        "|                                         |",
-        "|           [ PROFILE PORTRAIT ]          |",
-        "|                                         |",
-        "|             ADD YOUR PHOTO              |",
-        "|                                         |",
-        "|     1. Add photo to assets/             |",
-        "|     2. Run python scripts/prep_photo.py |",
-        "|     3. Run make_ascii_svg.py            |",
-        "|                                         |",
-        "+-----------------------------------------+"
+    placeholder_terminal = [
+        "┌──────────────────────────────────────┐",
+        "│  [ PHOTO_MODULE ]                    │",
+        "│  status : awaiting_input             │",
+        "│  mode   : terminal_ascii_v2          │",
+        "├──────────────────────────────────────┤",
+        "│                                      │",
+        "│     • Place photo in assets/         │",
+        "│     • Run scripts/prep_photo.py      │",
+        "│     • Run scripts/make_ascii_svg.py  │",
+        "│                                      │",
+        "└──────────────────────────────────────┘"
     ]
-    render_ascii_svg(placeholder_ascii, svg_output_path, is_placeholder=True)
+    render_ascii_svg(placeholder_terminal, svg_output_path, is_placeholder=True)
 
 def render_ascii_svg(lines, output_path, is_placeholder=False):
-    width = 370
-    height = 370
+    width = 350
+    height = 320
 
     svg_lines = []
     svg_lines.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">')
@@ -75,24 +72,28 @@ def render_ascii_svg(lines, output_path, is_placeholder=False):
             .dot-red { fill: #ff5f56; }
             .dot-yellow { fill: #ffbd2e; }
             .dot-green { fill: #27c93f; }
-            .title-text { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; fill: #8b949e; }
+            .title-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11px; fill: #8b949e; }
+            
             .ascii-text {
-                font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+                font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
                 font-size: 8px;
-                fill: #58a6ff;
+                fill: #39d353;
                 white-space: pre;
                 letter-spacing: 1px;
             }
             .placeholder-text {
-                font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+                font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
                 font-size: 11px;
                 fill: #8b949e;
                 white-space: pre;
             }
-            .highlight-line { fill: #39d353; font-weight: bold; }
-            .row { opacity: 0; animation: rowFadeIn 0.3s ease-out forwards; }
+            .highlight-green { fill: #39d353; font-weight: bold; }
+            .highlight-blue { fill: #58a6ff; }
+
+            /* CRITICAL FIX: opacity defaults to 1 so SVG renders instantly on GitHub */
+            .row { opacity: 1; animation: rowFadeIn 0.3s ease-out; }
             @keyframes rowFadeIn {
-                from { opacity: 0; transform: translateY(2px); }
+                from { opacity: 0.3; transform: translateY(2px); }
                 to { opacity: 1; transform: translateY(0); }
             }
         </style>
@@ -109,22 +110,25 @@ def render_ascii_svg(lines, output_path, is_placeholder=False):
     svg_lines.append('<circle cx="28" cy="14" r="4.5" class="dot-yellow" />')
     svg_lines.append('<circle cx="40" cy="14" r="4.5" class="dot-green" />')
     
-    title = "ascii-art.sh" if not is_placeholder else "portrait.ascii (no photo)"
+    title = "ascii-portrait.sh" if not is_placeholder else "photo-module.sh"
     svg_lines.append(f'<text x="54" y="18" class="title-text">{title}</text>')
 
-    start_y = 52
-    line_height = 12 if is_placeholder else 7
+    start_y = 56
+    line_height = 18 if is_placeholder else 7
 
     for idx, line in enumerate(lines):
-        delay = round(0.05 + idx * 0.04, 2)
+        delay = round(0.04 + idx * 0.03, 2)
         y_pos = start_y + idx * line_height
         
         css_class = "placeholder-text" if is_placeholder else "ascii-text"
-        if is_placeholder and "ADD YOUR PHOTO" in line:
-            css_class += " highlight-line"
+        if is_placeholder:
+            if "PHOTO_MODULE" in line or "status" in line:
+                css_class += " highlight-green"
+            elif "mode" in line:
+                css_class += " highlight-blue"
             
         svg_lines.append(
-            f'<text x="20" y="{y_pos}" class="{css_class} row" style="animation-delay: {delay}s;">{line}</text>'
+            f'<text x="18" y="{y_pos}" class="{css_class} row" style="animation-delay: {delay}s;">{line}</text>'
         )
 
     svg_lines.append('</svg>')
@@ -147,7 +151,7 @@ def main():
             generate_placeholder_svg(svg_output)
     else:
         print("No prepped photo found in assets/source-prepped.png.")
-        print("Generating terminal placeholder SVG ('ADD YOUR PHOTO').")
+        print("Generating terminal photo-module placeholder SVG.")
         generate_placeholder_svg(svg_output)
 
 if __name__ == "__main__":

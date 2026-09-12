@@ -1,20 +1,37 @@
 <div align="center">
 
-<h3><code>Tarushi12-ux@github ~ $ ./contributions.sh</code></h3>
+<h3><code>tarushi@github:~$ whoami</code></h3>
 
-<img src="./contrib-heatmap.svg" width="860" />
+<h1>Hi, I'm Tarushi 👋</h1>
+
+<p>
+  <b>Developer</b> focused on <b>Python</b>, <b>Artificial Intelligence</b>, and <b>Computer Vision</b>.
+</p>
+
+<p>
+  <code>Python</code> &nbsp;•&nbsp;
+  <code>AI / ML</code> &nbsp;•&nbsp;
+  <code>Computer Vision</code> &nbsp;•&nbsp;
+  <code>Web Development</code>
+</p>
+
+<br>
+
+<h3><code>tarushi@github:~$ git log --activity</code></h3>
+
+<img src="./contrib-heatmap.svg" alt="Tarushi's Real Contribution Activity" width="860" style="max-width: 100%;" />
 
 <br><br>
 
-<h3><code>Tarushi12-ux@github ~ $ whoami</code></h3>
+<h3><code>tarushi@github:~$ cat profile.json</code></h3>
 
 <table>
 <tr>
-<td valign="top">
-<img src="./ascii-profile.svg" width="370" />
+<td valign="top" align="center">
+<img src="./ascii-profile.svg" alt="Photo Module" width="350" style="max-width: 100%;" />
 </td>
-<td valign="top">
-<img src="./info-card.svg" width="490" />
+<td valign="top" align="center">
+<img src="./info-card.svg" alt="Developer Terminal Card" width="490" style="max-width: 100%;" />
 </td>
 </tr>
 </table>
@@ -23,48 +40,40 @@
 
 <br>
 
-## 👨‍💻 About Me
+## 💻 About Me
 
-Hello, I'm **Tarushi**! I am a developer and student focused on **Computer Vision, Deep Learning, and Real-Time Systems**. I love building intelligent software, optimizing edge models, and solving complex engineering challenges.
+Developer with a strong focus on building intelligent vision systems, automation tools, and real-time AI pipelines. Interested in solving practical problems through computer vision and clean software architecture.
 
-- 🎓 **Education**: B.Tech in Computer Science / Artificial Intelligence
-- 💡 **Focus**: Deep Learning, Real-Time Object Detection, and Robotics
-- ⚙️ **Workflow**: Terminal enthusiast, clean code advocate, and open-source learner
+- 🎯 **Focus**: Computer Vision & AI Development
+- ⚡ **Workflow**: Linux terminal, modular Python architecture, and version-controlled pipelines
 
 ---
 
 ## 🛠 Tech Stack
 
-```text
-Languages     : Python, C++, SQL, HTML/CSS, JavaScript
-AI & ML       : PyTorch, OpenCV, YOLO, Torchvision, Scikit-Learn
-Tools & Ops   : Git, Linux/Bash, Docker, VS Code, GitHub Actions
-```
+| Category | Technologies |
+| :--- | :--- |
+| **Languages** | `Python` • `JavaScript` • `HTML5 / CSS3` |
+| **AI & Vision** | `PyTorch` • `OpenCV` • `Computer Vision` |
+| **Web** | `React` • `HTML` • `CSS` |
+| **Tools** | `Git` • `GitHub` • `Linux / Bash` • `VS Code` |
 
 ---
 
-## 🚀 Featured Projects
+## 🚀 Projects
 
-- 🎯 **[Campus Object Detection](https://github.com/Tarushi12-ux/Campus_Object_Detection)** — Real-time detection & localization pipeline optimized for edge campus monitoring.
-- 🤖 **[air-script-ai](https://github.com/Tarushi12-ux/air-script-ai)** — AI-driven automation scripts for intelligent task execution.
-- 🛸 **[Drone Robotics Intelligence Platform](https://github.com/Tarushi12-ux/drone-robotics-intelligence-platform)** — Autonomous navigation and computer vision telemetry for drone operations.
-
----
-
-## 📚 Currently Learning & Exploring
-
-- ⚡ **Model Optimization**: TensorRT, ONNX Runtime, and INT8 quantization for real-time inference.
-- 🤖 **Robotics & ROS2**: Integrating vision pipelines with autonomous robotic controllers.
+- 🎯 **[Campus Object Detection](https://github.com/Tarushi12-ux/Campus_Object_Detection)** — Real-time detection & localization pipeline optimized for campus environments. *(Python, PyTorch, OpenCV)*
+- 🤖 **[air-script-ai](https://github.com/Tarushi12-ux/air-script-ai)** — Intelligent AI scripting tools and automation frameworks. *(Python)*
+- 👁️ **[falco](https://github.com/Tarushi12-ux/falco)** — Computer vision & intelligence platform. *(Python, OpenCV)*
 
 ---
 
-## 📫 Connect with Me
+## 📫 Connect
 
-- 💼 **GitHub**: [@Tarushi12-ux](https://github.com/Tarushi12-ux)
-- 📧 **Email**: Contact via GitHub Profile
+- 💻 **GitHub**: [@Tarushi12-ux](https://github.com/Tarushi12-ux)
 
 ---
 
 <div align="center">
-<sub>⚡ Profile graphics auto-generated via self-contained animated SVGs &amp; refreshed daily with GitHub Actions.</sub>
+<sub>⚡ Profile graphics auto-rendered via self-contained SVGs &amp; refreshed daily with GitHub Actions.</sub>
 </div>

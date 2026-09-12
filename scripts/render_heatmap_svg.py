@@ -25,13 +25,13 @@ def render_svg(data, output_path):
     total = data.get("total_contributions", 0)
     current_streak = data.get("current_streak", 0)
     longest_streak = data.get("longest_streak", 0)
-    username = data.get("username", "developer")
+    username = data.get("username", "tarushi")
 
     if not contributions:
         print("No contribution data found to render.")
         return
 
-    # Parse dates and organize into weeks (Sunday=0 to Saturday=6)
+    # Parse dates and organize into weeks
     parsed_days = []
     for d in contributions:
         dt = datetime.strptime(d["date"], "%Y-%m-%d")
@@ -44,16 +44,13 @@ def render_svg(data, output_path):
 
     parsed_days.sort(key=lambda x: x["dt"])
 
-    # Group into weeks
+    # Group into weeks (Sunday=0 to Saturday=6)
     weeks = []
     current_week = []
     
-    # Align the first week
     first_dt = parsed_days[0]["dt"]
-    # wday: Mon=0 .. Sun=6 in python, convert to Sun=0..Sat=6
     first_wday = (first_dt.weekday() + 1) % 7
     
-    # Pad beginning of first week if necessary
     for _ in range(first_wday):
         current_week.append(None)
 
@@ -64,12 +61,10 @@ def render_svg(data, output_path):
             current_week = []
 
     if current_week:
-        # Pad remaining days of last week
         while len(current_week) < 7:
             current_week.append(None)
         weeks.append(current_week)
 
-    # Keep at most 53 weeks
     weeks = weeks[-53:]
 
     # SVG layout parameters
@@ -82,10 +77,10 @@ def render_svg(data, output_path):
     cell_gap = 3
     cell_step = cell_size + cell_gap # 14px
 
-    start_x = padding_x + 30 # Offset for weekday labels
-    start_y = padding_y + 20 # Offset for month labels
+    start_x = padding_x + 30
+    start_y = padding_y + 20
 
-    # Month label positioning
+    # Month labels positioning
     month_labels = []
     last_month = -1
     for w_idx, week in enumerate(weeks):
@@ -106,15 +101,20 @@ def render_svg(data, output_path):
         <style>
             .bg { fill: #0d1117; rx: 8px; ry: 8px; }
             .card-border { stroke: #30363d; stroke-width: 1px; fill: none; rx: 8px; ry: 8px; }
-            .header-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #58a6ff; }
-            .sub-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 12px; fill: #8b949e; }
-            .label-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10px; fill: #8b949e; }
-            .cell { rx: 2px; ry: 2px; opacity: 0; animation: fadeInCell 0.4s ease-out forwards; }
+            .prompt-user { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; font-weight: bold; fill: #39d353; }
+            .prompt-at { fill: #8b949e; }
+            .prompt-host { fill: #58a6ff; }
+            .prompt-cmd { fill: #c9d1d9; }
+            .sub-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11px; fill: #8b949e; }
+            .label-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 10px; fill: #8b949e; }
+            
+            /* CRITICAL FIX: opacity defaults to 1 so SVG renders instantly on GitHub */
+            .cell { rx: 2px; ry: 2px; opacity: 1; transform-box: fill-box; transform-origin: center; animation: popIn 0.5s ease-out; }
             .legend-cell { rx: 2px; ry: 2px; }
 
-            @keyframes fadeInCell {
-                0% { opacity: 0; transform: scale(0.4); }
-                100% { opacity: 1; transform: scale(1); }
+            @keyframes popIn {
+                0% { transform: scale(0.3); opacity: 0.3; }
+                100% { transform: scale(1); opacity: 1; }
             }
         </style>
     ''')
@@ -124,11 +124,15 @@ def render_svg(data, output_path):
     svg_lines.append(f'<rect class="bg" width="{svg_width}" height="{svg_height}" />')
     svg_lines.append(f'<rect class="card-border" width="{svg_width - 1}" height="{svg_height - 1}" x="0.5" y="0.5" />')
 
-    # Top Terminal / Header
-    header_title = f"{username}@github ~ $ ./contributions.sh"
-    summary_text = f"{total:,} contributions in the last year • Streak: {current_streak}d (max: {longest_streak}d)"
+    # Top Terminal Header
+    summary_text = f"{total:,} contributions • streak: {current_streak}d (max: {longest_streak}d)"
     
-    svg_lines.append(f'<text x="{padding_x}" y="28" class="header-text">&gt; {header_title}</text>')
+    svg_lines.append(
+        f'<text x="{padding_x}" y="28" class="prompt-user">'
+        f'{username}<tspan class="prompt-at">@</tspan><tspan class="prompt-host">github</tspan> '
+        '<tspan class="prompt-cmd">:~$ git log --activity</tspan>'
+        '</text>'
+    )
     svg_lines.append(f'<text x="{svg_width - padding_x}" y="28" class="sub-text" text-anchor="end">{summary_text}</text>')
     
     # Divider line
@@ -153,18 +157,16 @@ def render_svg(data, output_path):
             y_pos = start_y + d_idx * cell_step
             color = PALETTE[day["level"]]
             
-            # Staggered animation delay based on diagonal position
-            delay = round((w_idx * 0.01 + d_idx * 0.02), 3)
+            delay = round((w_idx * 0.008 + d_idx * 0.015), 3)
             
-            # Cell rect with title tooltip
             cell_svg = (
                 f'<rect class="cell" x="{x_pos}" y="{y_pos}" width="{cell_size}" height="{cell_size}" '
-                f'fill="{color}" style="animation-delay: {delay}s; transform-origin: {x_pos + 5}px {y_pos + 5}px;">'
+                f'fill="{color}" style="animation-delay: {delay}s;">'
                 f'<title>{day["count"]} contributions on {day["date"]}</title></rect>'
             )
             svg_lines.append(cell_svg)
 
-    # Legend Footer (Bottom Right)
+    # Legend Footer
     legend_x = svg_width - padding_x - 140
     legend_y = svg_height - 18
     
@@ -176,7 +178,6 @@ def render_svg(data, output_path):
 
     svg_lines.append('</svg>')
 
-    # Save output
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(svg_lines))
 
