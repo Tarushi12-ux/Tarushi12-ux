@@ -1,0 +1,45 @@
+name: Update Profile Art
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # Daily at 06:17 UTC
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  update-heatmap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      - name: Fetch Real GitHub Contributions
+        run: |
+          python scripts/fetch_contributions.py Tarushi12-ux
+
+      - name: Render Animated Heatmap SVG
+        run: |
+          python scripts/render_heatmap_svg.py
+
+      - name: Auto-commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-refresh contribution graph [skip ci]"
+          file_pattern: "data/contributions.json contrib-heatmap.svg"

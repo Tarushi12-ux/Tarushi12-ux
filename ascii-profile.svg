@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 370" width="370" height="370">
+<defs>
+
+        <style>
+            .bg { fill: #0d1117; rx: 8px; ry: 8px; }
+            .card-border { stroke: #30363d; stroke-width: 1px; fill: none; rx: 8px; ry: 8px; }
+            .title-bar { fill: #161b22; rx: 8px; ry: 8px; }
+            .dot-red { fill: #ff5f56; }
+            .dot-yellow { fill: #ffbd2e; }
+            .dot-green { fill: #27c93f; }
+            .title-text { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; fill: #8b949e; }
+            .ascii-text {
+                font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+                font-size: 8px;
+                fill: #58a6ff;
+                white-space: pre;
+                letter-spacing: 1px;
+            }
+            .placeholder-text {
+                font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+                font-size: 11px;
+                fill: #8b949e;
+                white-space: pre;
+            }
+            .highlight-line { fill: #39d353; font-weight: bold; }
+            .row { opacity: 0; animation: rowFadeIn 0.3s ease-out forwards; }
+            @keyframes rowFadeIn {
+                from { opacity: 0; transform: translateY(2px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+    
+</defs>
+<rect class="bg" width="370" height="370" />
+<rect class="card-border" width="369" height="369" x="0.5" y="0.5" />
+<rect class="title-bar" width="370" height="28" />
+<circle cx="16" cy="14" r="4.5" class="dot-red" />
+<circle cx="28" cy="14" r="4.5" class="dot-yellow" />
+<circle cx="40" cy="14" r="4.5" class="dot-green" />
+<text x="54" y="18" class="title-text">portrait.ascii (no photo)</text>
+<text x="20" y="52" class="placeholder-text row" style="animation-delay: 0.05s;">+-----------------------------------------+</text>
+<text x="20" y="64" class="placeholder-text row" style="animation-delay: 0.09s;">|                                         |</text>
+<text x="20" y="76" class="placeholder-text row" style="animation-delay: 0.13s;">|           [ PROFILE PORTRAIT ]          |</text>
+<text x="20" y="88" class="placeholder-text row" style="animation-delay: 0.17s;">|                                         |</text>
+<text x="20" y="100" class="placeholder-text highlight-line row" style="animation-delay: 0.21s;">|             ADD YOUR PHOTO              |</text>
+<text x="20" y="112" class="placeholder-text row" style="animation-delay: 0.25s;">|                                         |</text>
+<text x="20" y="124" class="placeholder-text row" style="animation-delay: 0.29s;">|     1. Add photo to assets/             |</text>
+<text x="20" y="136" class="placeholder-text row" style="animation-delay: 0.33s;">|     2. Run python scripts/prep_photo.py |</text>
+<text x="20" y="148" class="placeholder-text row" style="animation-delay: 0.37s;">|     3. Run make_ascii_svg.py            |</text>
+<text x="20" y="160" class="placeholder-text row" style="animation-delay: 0.41s;">|                                         |</text>
+<text x="20" y="172" class="placeholder-text row" style="animation-delay: 0.45s;">+-----------------------------------------+</text>
+</svg>

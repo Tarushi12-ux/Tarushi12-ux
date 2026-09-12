@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 370" width="490" height="370">
+<defs>
+
+        <style>
+            .bg { fill: #0d1117; rx: 8px; ry: 8px; }
+            .card-border { stroke: #30363d; stroke-width: 1px; fill: none; rx: 8px; ry: 8px; }
+            .title-bar { fill: #161b22; rx: 8px; ry: 8px; }
+            .dot-red { fill: #ff5f56; }
+            .dot-yellow { fill: #ffbd2e; }
+            .dot-green { fill: #27c93f; }
+            .title-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11px; fill: #8b949e; }
+            
+            .prompt-user { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; font-weight: bold; fill: #58a6ff; }
+            .prompt-at { fill: #8b949e; }
+            .prompt-host { fill: #39d353; }
+            .prompt-cmd { fill: #c9d1d9; }
+            .separator { stroke: #30363d; stroke-width: 1px; }
+
+            .key-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11.5px; font-weight: bold; fill: #79c0ff; }
+            .val-text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11.5px; fill: #c9d1d9; }
+            .val-highlight { fill: #a5d6ff; font-weight: 500; }
+            .val-accent { fill: #7ee787; }
+            
+            .row-line { opacity: 0; animation: lineSlideIn 0.4s ease-out forwards; }
+            @keyframes lineSlideIn {
+                from { opacity: 0; transform: translateX(-6px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+        </style>
+    
+</defs>
+<rect class="bg" width="490" height="370" />
+<rect class="card-border" width="489" height="369" x="0.5" y="0.5" />
+<rect class="title-bar" width="490" height="28" />
+<circle cx="16" cy="14" r="4.5" class="dot-red" />
+<circle cx="28" cy="14" r="4.5" class="dot-yellow" />
+<circle cx="40" cy="14" r="4.5" class="dot-green" />
+<text x="54" y="18" class="title-text">neofetch --user Tarushi12-ux</text>
+<text x="20" y="52" class="prompt-user row-line" style="animation-delay: 0.05s;">Tarushi12-ux<tspan class="prompt-at">@</tspan><tspan class="prompt-host">github</tspan> <tspan class="prompt-cmd">~ $ neofetch</tspan></text>
+<line x1="20" y1="62" x2="470" y2="62" class="separator row-line" style="animation-delay: 0.1s;" />
+<text x="20" y="88" class="row-line" style="animation-delay: 0.15s;"><tspan class="key-text">USER        :</tspan> <tspan class="val-highlight">Tarushi12-ux</tspan></text>
+<text x="20" y="118" class="row-line" style="animation-delay: 0.21s;"><tspan class="key-text">ROLE        :</tspan> <tspan class="val-text">AI & Software Developer</tspan></text>
+<text x="20" y="148" class="row-line" style="animation-delay: 0.27s;"><tspan class="key-text">EDUCATION   :</tspan> <tspan class="val-text">B.Tech Computer Science / AI</tspan></text>
+<text x="20" y="178" class="row-line" style="animation-delay: 0.33s;"><tspan class="key-text">LOCATION    :</tspan> <tspan class="val-text">India</tspan></text>
+<text x="20" y="208" class="row-line" style="animation-delay: 0.39s;"><tspan class="key-text">STACK       :</tspan> <tspan class="val-accent">Python • PyTorch • OpenCV • C++ • React</tspan></text>
+<text x="20" y="238" class="row-line" style="animation-delay: 0.45s;"><tspan class="key-text">PROJECTS    :</tspan> <tspan class="val-text">Campus Object Detection • AI Script Bot</tspan></text>
+<text x="20" y="268" class="row-line" style="animation-delay: 0.51s;"><tspan class="key-text">INTERESTS   :</tspan> <tspan class="val-text">Computer Vision • Deep Learning • Embedded AI</tspan></text>
+<text x="20" y="298" class="row-line" style="animation-delay: 0.57s;"><tspan class="key-text">FOCUS       :</tspan> <tspan class="val-highlight">Real-time Object Detection & Edge AI Optimization</tspan></text>
+<g class="row-line" style="animation-delay: 0.63s;">
+<rect x="20" y="333" width="14" height="10" fill="#161b22" rx="2" />
+<rect x="40" y="333" width="14" height="10" fill="#ff5f56" rx="2" />
+<rect x="60" y="333" width="14" height="10" fill="#27c93f" rx="2" />
+<rect x="80" y="333" width="14" height="10" fill="#ffbd2e" rx="2" />
+<rect x="100" y="333" width="14" height="10" fill="#58a6ff" rx="2" />
+<rect x="120" y="333" width="14" height="10" fill="#bc8cff" rx="2" />
+<rect x="140" y="333" width="14" height="10" fill="#39d353" rx="2" />
+<rect x="160" y="333" width="14" height="10" fill="#c9d1d9" rx="2" />
+</g>
+</svg>
