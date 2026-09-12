@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
 """
 Generates an animated GIF neofetch terminal info card for the GitHub Profile README.
+Includes BCA • MCA education details.
 Output: assets/info-card.gif
 """
 
 import os
 from PIL import Image, ImageDraw, ImageFont
 
-# Strictly authentic details only
 FIELDS = [
-    ("USER", "Tarushi12-ux", (126, 231, 135)),      # Green
-    ("FOCUS", "Computer Vision & AI", (201, 209, 217)), # Text
-    ("STACK", "Python • PyTorch • OpenCV • React", (121, 192, 255)), # Cyan
+    ("USER", "Tarushi12-ux", (126, 231, 135)),          # Green
+    ("EDUCATION", "BCA • MCA", (201, 209, 217)),        # Text
+    ("FOCUS", "Computer Vision & AI", (121, 192, 255)),   # Cyan
+    ("STACK", "Python • PyTorch • OpenCV", (201, 209, 217)),
     ("PROJECTS", "Campus Object Detection • Air Script AI • Falco", (201, 209, 217)),
-    ("BUILDING", "Real-Time Object Detection Pipelines", (126, 231, 135)),
-    ("STATUS", "ONLINE 🟢", (57, 211, 83))           # Active Green
+    ("STATUS", "ONLINE 🟢", (57, 211, 83))               # Active Green
 ]
 
 def create_info_card_gif(output_path):
     width, height = 490, 320
-    bg_color = (13, 17, 23) # #0d1117
-    border_color = (48, 54, 61) # #30363d
+    bg_color = (13, 17, 23)      # #0d1117
+    border_color = (48, 54, 61)  # #30363d
     title_bar_color = (22, 27, 34) # #161b22
 
     try:
-        font_main = ImageFont.truetype("consola.ttf", 12)
-        font_key = ImageFont.truetype("consolab.ttf", 12)
+        font_main = ImageFont.truetype("consola.ttf", 11)
+        font_key = ImageFont.truetype("consolab.ttf", 11)
     except IOError:
         font_main = ImageFont.load_default()
         font_key = ImageFont.load_default()
@@ -43,25 +43,24 @@ def create_info_card_gif(output_path):
         draw.text((54, 5), "neofetch --user Tarushi12-ux", fill=(139, 148, 158), font=font_main)
         
         # Command line prompt
-        draw.text((20, 36), "tarushi", fill=(57, 211, 83), font=font_key)
+        draw.text((20, 34), "tarushi", fill=(57, 211, 83), font=font_key)
         u_width = font_key.getbbox("tarushi")[2] - font_key.getbbox("tarushi")[0]
-        draw.text((20 + u_width, 36), "@github:~$ neofetch", fill=(201, 209, 217), font=font_main)
-        draw.line([20, 56, width - 20, 56], fill=(48, 54, 61), width=1)
+        draw.text((20 + u_width, 34), "@github:~$ neofetch", fill=(201, 209, 217), font=font_main)
+        draw.line([20, 52, width - 20, 52], fill=(48, 54, 61), width=1)
         return img, draw
 
     # Build typing frame steps
     steps = []
-    # Step 1..N: Lines reveal one by one
     for line_idx in range(1, len(FIELDS) + 1):
         for char_idx in range(1, len(FIELDS[line_idx - 1][1]) + 1):
             steps.append((line_idx - 1, char_idx, False))
 
-    # Hold state with blinking cursor / status pulse
+    # Hold state with blinking cursor
     for blink in range(12):
         steps.append((len(FIELDS) - 1, len(FIELDS[-1][1]), blink % 2 == 0))
 
-    start_y = 74
-    line_spacing = 34
+    start_y = 66
+    line_spacing = 38
 
     for max_line, partial_chars, cursor_on in steps:
         img, draw = draw_base_frame()
@@ -70,23 +69,20 @@ def create_info_card_gif(output_path):
             key, val, val_color = FIELDS[idx]
             y_pos = start_y + idx * line_spacing
             
-            # Format key (padded)
-            key_str = f"{key:<10}: "
+            key_str = f"{key:<11}: "
             draw.text((20, y_pos), key_str, fill=(88, 166, 255), font=font_key)
             k_width = font_key.getbbox(key_str)[2] - font_key.getbbox(key_str)[0]
             
-            # Partial or full text
             current_val = val[:partial_chars] if idx == max_line else val
             draw.text((20 + k_width, y_pos), current_val, fill=val_color, font=font_main)
 
-            # Cursor at current typing line
             if idx == max_line and cursor_on:
                 v_width = font_main.getbbox(current_val)[2] - font_main.getbbox(current_val)[0]
                 cx = 22 + k_width + v_width
-                draw.rectangle([cx, y_pos + 1, cx + 7, y_pos + 13], fill=(57, 211, 83))
+                draw.rectangle([cx, y_pos + 1, cx + 6, y_pos + 12], fill=(57, 211, 83))
 
         # Bottom accent palette dots
-        dot_y = start_y + len(FIELDS) * line_spacing + 10
+        dot_y = start_y + len(FIELDS) * line_spacing + 6
         colors = [(22, 27, 34), (255, 95, 86), (39, 201, 63), (255, 189, 46), (88, 166, 255), (188, 140, 255), (57, 211, 83), (201, 209, 217)]
         for i, col in enumerate(colors):
             cx = 20 + i * 18
@@ -103,7 +99,7 @@ def create_info_card_gif(output_path):
         duration=durations,
         loop=0
     )
-    print(f"Generated animated info card GIF at: {output_path}")
+    print(f"Generated animated info card GIF at: {output_path} (Total Frames: {len(frames)})")
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))

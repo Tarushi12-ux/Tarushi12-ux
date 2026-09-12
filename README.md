@@ -11,7 +11,7 @@
 <table>
 <tr>
 <td valign="top" align="center">
-<img src="./assets/ascii-profile.gif" alt="Animated Photo Module" width="350" style="max-width: 100%;" />
+<img src="./assets/ascii-profile.gif" alt="Animated Photo Module" width="370" style="max-width: 100%;" />
 </td>
 <td valign="top" align="center">
 <img src="./assets/info-card.gif" alt="Animated Terminal Info Card" width="490" style="max-width: 100%;" />
@@ -25,10 +25,17 @@
 
 ## 💻 About Me
 
-Developer focused on building intelligent vision systems, automation tools, and real-time AI pipelines. Interested in solving practical problems through computer vision and clean software architecture.
+Developer focused on building intelligent vision systems, automation tools, and real-time AI pipelines. Interested in solving practical engineering problems through computer vision and clean software architecture.
 
 - 🎯 **Focus**: Computer Vision & AI Development
 - ⚡ **Workflow**: Linux terminal, modular Python architecture, and version-controlled pipelines
+
+---
+
+## 🎓 Education
+
+- **Master of Computer Applications (MCA)**
+- **Bachelor of Computer Applications (BCA)**
 
 ---
 
@@ -43,7 +50,7 @@ Developer focused on building intelligent vision systems, automation tools, and 
 
 ---
 
-## 🚀 Projects
+## 🚀 Featured Projects
 
 - 🎯 **[Campus Object Detection](https://github.com/Tarushi12-ux/Campus_Object_Detection)** — Real-time detection & localization pipeline optimized for campus environments. *(Python, PyTorch, OpenCV)*
 - 🤖 **[air-script-ai](https://github.com/Tarushi12-ux/air-script-ai)** — Intelligent AI scripting tools and automation frameworks. *(Python)*
@@ -58,5 +65,5 @@ Developer focused on building intelligent vision systems, automation tools, and 
 ---
 
 <div align="center">
-<sub>⚡ Profile graphics auto-rendered via dynamic animated graphics &amp; refreshed daily with GitHub Actions.</sub>
+<sub>⚡ Profile graphics auto-rendered via dynamic terminal animations &amp; refreshed daily via GitHub Actions.</sub>
 </div>
