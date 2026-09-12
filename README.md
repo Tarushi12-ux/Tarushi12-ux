@@ -1,37 +1,20 @@
 <div align="center">
 
-<h3><code>tarushi@github:~$ whoami</code></h3>
-
-<h1>Hi, I'm Tarushi 👋</h1>
-
-<p>
-  <b>Developer</b> focused on <b>Python</b>, <b>Artificial Intelligence</b>, and <b>Computer Vision</b>.
-</p>
-
-<p>
-  <code>Python</code> &nbsp;•&nbsp;
-  <code>AI / ML</code> &nbsp;•&nbsp;
-  <code>Computer Vision</code> &nbsp;•&nbsp;
-  <code>Web Development</code>
-</p>
-
-<br>
-
-<h3><code>tarushi@github:~$ git log --activity</code></h3>
-
-<img src="./contrib-heatmap.svg" alt="Tarushi's Real Contribution Activity" width="860" style="max-width: 100%;" />
+<img src="./assets/header-animation.gif" alt="Terminal Header" width="860" style="max-width: 100%;" />
 
 <br><br>
 
-<h3><code>tarushi@github:~$ cat profile.json</code></h3>
+<img src="./contrib-heatmap.svg" alt="Real Contribution Heatmap" width="860" style="max-width: 100%;" />
+
+<br><br>
 
 <table>
 <tr>
 <td valign="top" align="center">
-<img src="./ascii-profile.svg" alt="Photo Module" width="350" style="max-width: 100%;" />
+<img src="./assets/ascii-profile.gif" alt="Animated Photo Module" width="350" style="max-width: 100%;" />
 </td>
 <td valign="top" align="center">
-<img src="./info-card.svg" alt="Developer Terminal Card" width="490" style="max-width: 100%;" />
+<img src="./assets/info-card.gif" alt="Animated Terminal Info Card" width="490" style="max-width: 100%;" />
 </td>
 </tr>
 </table>
@@ -42,7 +25,7 @@
 
 ## 💻 About Me
 
-Developer with a strong focus on building intelligent vision systems, automation tools, and real-time AI pipelines. Interested in solving practical problems through computer vision and clean software architecture.
+Developer focused on building intelligent vision systems, automation tools, and real-time AI pipelines. Interested in solving practical problems through computer vision and clean software architecture.
 
 - 🎯 **Focus**: Computer Vision & AI Development
 - ⚡ **Workflow**: Linux terminal, modular Python architecture, and version-controlled pipelines
@@ -75,5 +58,5 @@ Developer with a strong focus on building intelligent vision systems, automation
 ---
 
 <div align="center">
-<sub>⚡ Profile graphics auto-rendered via self-contained SVGs &amp; refreshed daily with GitHub Actions.</sub>
+<sub>⚡ Profile graphics auto-rendered via dynamic animated graphics &amp; refreshed daily with GitHub Actions.</sub>
 </div>
